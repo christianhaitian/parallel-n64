@@ -259,11 +259,13 @@ EXPORT void CALL inputControllerCommand(int Control, unsigned char *Command)
                 {
                     if (*Data)
                     {
+                        system("echo 10 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle");
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_WEAK, 0xFFFF);
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_STRONG, 0xFFFF);
                     }
                     else
                     {
+                        system("echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle");
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_WEAK, 0);
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_STRONG, 0);
                     }
