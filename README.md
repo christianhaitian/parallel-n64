@@ -1,6 +1,14 @@
 [![Build Status](https://travis-ci.org/libretro/parallel-n64.svg?branch=master)](https://travis-ci.org/libretro/parallel-n64)
 [![Build status](https://ci.appveyor.com/api/projects/status/iqe836smfugoy8ey/branch/master?svg=true)](https://ci.appveyor.com/project/bparker06/parallel-n64/branch/master)
 
+# Added rumble support for the Anbernic RG351P
+
+## To compile for rk3326 based devices (Requires a 32bit environment):
+`git clone https://github.com/christianhaitian/parallel-n64.git` \
+`cd parallel-n64/` \
+`make clean` \
+`make platform=Odroidgoa -lto -j4`
+
 # mupen64plus-libretro
 
 To enable a dynarec CPU core you must pass the WITH_DYNAREC value to make:
