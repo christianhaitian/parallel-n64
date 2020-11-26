@@ -257,15 +257,21 @@ EXPORT void CALL inputControllerCommand(int Control, unsigned char *Command)
 
                 if ((dwAddress == PAK_IO_RUMBLE) && (rumble.set_rumble_state))
                 {
+                    FILE *fp;
+
                     if (*Data)
                     {
-                        system("echo 10 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle");
+                        fp = fopen("/sys/class/pwm/pwmchip0/pwm0/duty_cycle", "w");
+                        fprintf(fp, "10");
+                        fclose(fp);
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_WEAK, 0xFFFF);
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_STRONG, 0xFFFF);
                     }
                     else
                     {
-                        system("echo 1000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle");
+                        fp = fopen("/sys/class/pwm/pwmchip0/pwm0/duty_cycle", "w");
+                        fprintf(fp, "1000000");
+                        fclose(fp);
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_WEAK, 0);
                         rumble.set_rumble_state(Control, RETRO_RUMBLE_STRONG, 0);
                     }
